@@ -1,0 +1,145 @@
+<div class="container">
+    <h2>Customer Details</h2>
+    <form name="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <div class="row">
+            <div class="col-4">
+                <label class="control-label required">First name</label>
+                <input type="text" class="form-control" formControlName="firstName" placeholder="First name">
+                <span *ngIf="!form.controls['firstName'].valid && form.controls['firstName'].touched">
+                    <div class="errorMsg">Name is required!</div>
+                </span>
+            </div>
+            <div class="col-4">
+                <label>Last Name</label>
+                <input type="text" class="form-control" formControlName="lastName" placeholder="Last name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label class="control-label required">Email</label>
+                <input type="text" class="form-control" formControlName="email" placeholder="Email"
+                    [class.is-invalid]="!form.controls['email'].valid && form.controls['email'].touched">
+                <span *ngIf="!form.controls['email'].valid && form.controls['email'].touched">
+                    <div class="errorMsg">Email is required!</div>
+                </span>
+            </div>
+            <div class="col-4">
+                <label class="control-label required">Contact No</label>
+                <input type="text" class="form-control" formControlName="phoneNo" placeholder="">
+                <span *ngIf="!form.controls['phoneNo'].valid && form.controls['phoneNo'].touched">
+                    <div class="errorMsg">Phone no is required!</div>
+                </span>
+            </div>
+        </div>
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="col-md-4 padding-0">
+                            <label class="control-label required">Shipping From </label>
+                            <input type="text" class="form-control" formControlName="shippingFrom" placeholder="">
+                            <span *ngIf="!form.controls['shippingFrom'].valid && form.controls['shippingFrom'].touched">
+                                <div class="errorMsg">Required!</div>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-md-4 padding-0">
+                            <label class="control-label required">Shipping To </label>
+                            <input type="text" class="form-control" formControlName="shippingTo" placeholder="">
+                            <span *ngIf="!form.controls['shippingTo'].valid && form.controls['shippingTo'].touched">
+                                <div class="errorMsg">Required!</div>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-4">
+                            <label class="control-label required">City </label>
+                            <input type="text" class="form-control" formControlName="cityFrom" placeholder="">
+                            <span *ngIf="!form.controls['cityFrom'].valid && form.controls['cityFrom'].touched">
+                                <div class="errorMsg">Required!</div>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-4">
+                            <label class="control-label required">City </label>
+                            <input type="text" class="form-control" formControlName="cityTo" placeholder="">
+                            <span *ngIf="!form.controls['cityTo'].valid && form.controls['cityTo'].touched">
+                                <div class="errorMsg">Required!</div>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-4">
+                            <label class="control-label required">Postal Code</label>
+                            <input type="text" class="form-control" formControlName="postalCodeFrom" placeholder="">
+                            <span
+                                *ngIf="!form.controls['postalCodeFrom'].valid && form.controls['postalCodeFrom'].touched">
+                                <div class="errorMsg">Required!</div>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-4">
+                            <label class="control-label required">Postal Code</label>
+                            <input type="text" class="form-control" formControlName="postalCodeTo" placeholder="">
+                            <span *ngIf="!form.controls['postalCodeTo'].valid && form.controls['postalCodeTo'].touched">
+                                <div class="errorMsg">Required!</div>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-4">
+                            <label class="control-label required">Pickup Date</label>
+                            <input type="text" class="form-control" formControlName="pickupDate" placeholder="">                          
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-4">
+                            <label class="control-label required">Contact Person No</label>
+                            <input type="text" class="form-control" formControlName="contactPersonNo" placeholder="">                            
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+            <label for="delivery">Delivery Options:</label>
+            <div>
+                <input id="std" type="radio" value="std" name="delivery" formControlName="delivery">
+                <label for="std">Standard</label>
+            </div>
+
+            <div>
+                <input id="speed" type="radio" value="speed" name="delivery" formControlName="delivery">
+                <label for="speed">Speed</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label class="control-label required">Commodity </label>
+                <input type="text" class="form-control" formControlName="commodity" placeholder="">                
+            </div>
+            <div class="col-4">
+                <label class="control-label required">Weight(approx)</label>
+                <input type="text" class="form-control" formControlName="weight" placeholder="">                
+            </div>
+        </div>   
+        <div class="row">
+            <label class="control-label">Notes</label>
+            <input type="test" class="form-control" formControlName="commodity">
+        </div>
+        <div class="btn">
+            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Save</button>
+            <button class="btn btn-success">Calculate</button>
+        </div>
+    </form>
+</div>

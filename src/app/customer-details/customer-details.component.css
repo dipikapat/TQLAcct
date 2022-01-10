@@ -1,0 +1,21 @@
+.btn{
+    margin: 15px;;
+}
+.text{
+   color:green;
+}
+.control-label.required:after { 
+    color: #d00;
+    content: "*";
+    position: absolute;   
+}
+.errorMsg{
+    color: red;
+}
+.tdcol{
+    padding-left: 50px;
+}
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
