@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from '../customer.service';  
+import { Customer } from '../customer';  
 
 @Component({
   selector: 'app-customer-details',
@@ -20,17 +21,20 @@ export class CustomerDetailsComponent implements OnInit {
       lastName: [''],
       email: ['', [Validators.required, Validators.email]],
       phoneNo: ['', [Validators.required]],
-      shippingFrom: ['', Validators.required],
-      shippingTo: ['', Validators.required],
-      cityFrom: ['', Validators.required],
-      cityTo: ['', Validators.required],    
-      postalCodeFrom:['', Validators.required],
-      postalCodeTo:['', Validators.required],
+      city: ['', [Validators.required]],
+      address:['', [Validators.required]],
+      fromAddress: ['', Validators.required],
+      toAddress: ['', Validators.required],
+      fromCity: ['', Validators.required],
+      toCity: ['', Validators.required],    
+      fromPostalCode:['', Validators.required],
+      toPostalCode:['', Validators.required],
       commodity:['',Validators.required],
       weight:['',Validators.required],
       pickupDate:['',Validators.required],
       contactPersonNo:['',Validators.required],
-      delivery:['',Validators.required]
+      deliveryType:['',Validators.required],
+      comments:['']
 
   } );
 }
@@ -43,11 +47,13 @@ onSubmit(value:any){
    const customer = this.form.value;
    this.CreateCustomer(customer);
 }
-CreateCustomer(customer:any){
-this.customerService.createCustomer(customer).subscribe(() =>
+CreateCustomer(customer:Customer){
+  console.log(customer.weight);
+  customer.weight = +customer.weight;
+  console.log(customer.weight);
+this.customerService.createCustomer(customer).subscribe((d :Customer)=>
   {
-    console.log("success");
-    this.form.reset(); 
+    console.log(d);
 });
 }
 }
