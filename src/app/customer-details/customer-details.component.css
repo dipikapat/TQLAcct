@@ -37,4 +37,23 @@
 .table{
     width:60%
 }
+ .bodertd{
+    width:80%
+ }
+ table.custom_class {
+    margin:0px;
+    padding:0px;
+    border-spacing:0px;
+    border-collapse:collapse;
+    line-height:22px;
+    font-size:13px;
+    font-family:Arial, Verdana, Tahoma, Helvetica, sans-serif;
+    font-weight:400;
+    text-decoration:none;
+    color:brown; 
+    white-space:pre-wrap;
+    width:100%
+    
+}
  
+   

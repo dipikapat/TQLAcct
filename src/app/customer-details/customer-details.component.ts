@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from '../customer.service';  
-import { Customer } from '../customer';  
+import { Customer } from '../customer'; 
+import { DxPopupModule, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
+ 
 
 @Component({
   selector: 'app-customer-details',
@@ -11,6 +13,15 @@ import { Customer } from '../customer';
 export class CustomerDetailsComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
+  poNumber:number=0;
+  popupVisible = false;
+  customer:any="";
+  fromAddress!:string;
+  toAddress!:string;
+  commodity!:string;
+  tax!:number;
+  totalCost!:number;
+
    
 
   constructor(private formBuilder: FormBuilder,private customerService:CustomerService) { }
@@ -47,13 +58,38 @@ onSubmit(value:any){
    const customer = this.form.value;
    this.CreateCustomer(customer);
 }
+getInvoiceDetails(){
+  if(this.poNumber != null){
+    this.popupVisible = true;
+    this.GetCustomerDetails(this.poNumber);
+  } 
+  
+}
+GetCustomerDetails(poNumber:number){
+  this.customerService.getCustomerDetails(poNumber).subscribe((response:Customer) =>{
+    console.log(response);
+    this.customer = response;
+    this.fromAddress = response.fromAddress;
+    this.toAddress = response.toAddress;
+    this.commodity = response.commodity;
+    this.tax = response.tax;
+    this.totalCost = response.totalCost;
+  })
+}
+
 CreateCustomer(customer:Customer){
   console.log(customer.weight);
   customer.weight = +customer.weight;
+  customer.phoneNo = +customer.phoneNo;
+  customer.fromPostalCode = +customer.fromPostalCode;
+  customer.toPostalCode = +customer.toPostalCode;
   console.log(customer.weight);
 this.customerService.createCustomer(customer).subscribe((d :Customer)=>
   {
     console.log(d);
+    if(d.poNumber != null){
+      this.poNumber = d.poNumber
+    }
 });
 }
 }

@@ -148,12 +148,12 @@
                 <div class="row">
                     <label for="deliveryType">Delivery Options:</label>
                     <div>
-                        <input id="std" type="radio" value="std" name="deliveryType" formControlName="deliveryType">
+                        <input id="std" type="radio" value="Standard" name="deliveryType" formControlName="deliveryType">
                         <label for="std">Standard</label>
                     </div>
 
                     <div>
-                        <input id="speed" type="radio" value="speed" name="deliveryType" formControlName="deliveryType">
+                        <input id="speed" type="radio" value="Speed" name="deliveryType" formControlName="deliveryType">
                         <label for="speed">Speed</label>
                     </div>
                 </div>
@@ -175,9 +175,45 @@
                 </div>
                 <div class="btn">
                     <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Save</button>
-                    <button class="btn btn-success">Calculate</button>
+                    
                 </div>
             </form>
+            <button class="btn btn-success" (click)="getInvoiceDetails()">Submit</button>
         </mat-card-content>
     </mat-card>
+    <dx-popup
+    [width]="400"
+    [height]="280"
+    [showTitle]="true"
+    title="Invoice"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [showCloseButton]="false"
+    container=".dx-viewport"
+    [(visible)]="popupVisible"
+    >
+    <table class="custom_class">
+        <tr>
+            <td><strong>ShippingFrom</strong></td>
+            <td style="text-align: right;">{{this.fromAddress}}</td>
+        </tr>
+        <tr>
+            <td><strong>ShipiingTo</strong></td>
+            <td style="text-align: right;">{{this.toAddress}}</td>
+        </tr>
+        <tr>
+            <td><strong>Commodity</strong></td>
+            <td style="text-align: right;">{{this.commodity}}</td>
+        </tr>
+        <tr>
+            <td><strong>Tax</strong></td>
+            <td style="text-align: right;">{{this.tax}}</td>
+        </tr>
+        <tr>
+            <td><strong>Total Cost</strong></td>
+            <td style="text-align: right;">{{this.totalCost}}</td>
+        </tr>
+        <button class="btn btn-primary">Print</button>
+    </table>
+    </dx-popup>
 </div>

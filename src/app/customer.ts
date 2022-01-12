@@ -1,14 +1,14 @@
 export class Customer {
     firstName!: string;
     city!: string;
-    phoneNo!: string;
+    phoneNo!: number;
     emai!: string;  
     fromAddress!: string;
     fromCity!: string;
-    fromPostalCode!: string;
+    fromPostalCode!: number;
     toAddress!: string;
     toCity!: string;
-    toPostalCode!: string;
+    toPostalCode!: number;
     commodity!: string;
     weight!: number;
     deliveryType!: string;
