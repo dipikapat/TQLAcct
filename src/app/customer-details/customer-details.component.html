@@ -191,7 +191,8 @@
     [showCloseButton]="false"
     container=".dx-viewport"
     [(visible)]="popupVisible"
-    >
+     >
+     <div id="container" #container>
     <table class="custom_class">
         <tr>
             <td><strong>ShippingFrom</strong></td>
@@ -213,7 +214,9 @@
             <td><strong>Total Cost</strong></td>
             <td style="text-align: right;">{{this.totalCost}}</td>
         </tr>
-        <button class="btn btn-primary">Print</button>
+        <button class="btn btn-primary" (click)="SavePDF()">Download Pdf</button>
+        <button class="btn btn-success"[disabled]=true >Proceed To Pay</button>
     </table>
+ </div>
     </dx-popup>
 </div>

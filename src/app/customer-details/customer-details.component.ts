@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular
 import { CustomerService } from '../customer.service';  
 import { Customer } from '../customer'; 
 import { DxPopupModule, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
+import jsPDF from 'jspdf';
+
+import html2canvas from 'html2canvas';
  
 
 @Component({
@@ -76,6 +79,41 @@ GetCustomerDetails(poNumber:number){
     this.totalCost = response.totalCost;
   })
 }
+
+generatePDF(data1:any){
+
+  html2canvas(data1).then(canvas => {
+
+    let imgwidth =200;
+
+    let imgheight = (canvas.height * imgwidth/canvas.width)
+
+    const contentdataurl = canvas.toDataURL('image/png');
+
+    let pdf = new jsPDF('l','mm','a4');
+
+    var position =10;
+
+    pdf.addImage(contentdataurl,'PNG',0,position,imgwidth,imgheight);
+
+    pdf.save('Billable.pdf');
+    this.popupVisible = false;
+  })
+}
+
+
+public SavePDF(): void {  
+
+  console.log("printing");
+
+ 
+
+  let data =document.getElementById("container");
+
+  this.generatePDF(data);
+
+}
+
 
 CreateCustomer(customer:Customer){
   console.log(customer.weight);
