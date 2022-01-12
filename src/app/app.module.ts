@@ -9,7 +9,7 @@ import {MatFormFieldModule } from '@angular/material/form-field'
 import {MatNativeDateModule} from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
-import { DxPopupModule, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
+import { DxPopupModule, DxButtonModule, DxTemplateModule,DxToastModule } from 'devextreme-angular';
 
 import { AppComponent } from './app.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
@@ -34,7 +34,8 @@ import { CustomerService } from './customer.service';
     BrowserAnimationsModule,
     MatInputModule,
     DxButtonModule,
-    DxPopupModule
+    DxPopupModule,
+    DxToastModule
 
      
   ],

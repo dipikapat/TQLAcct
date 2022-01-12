@@ -177,13 +177,20 @@
                     <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Save</button>
                     
                 </div>
+                <dx-toast [(visible)]="isVisible" [type]="type" [message]="submitmessage">
+                </dx-toast>  
+                <div class ="btnalign">
+                    <input type="button" [disabled] ="onsaveClick" class="btn btn-success" value="Submit" (click)="getInvoiceDetails()"> 
+                </div>            
             </form>
-            <button class="btn btn-success" (click)="getInvoiceDetails()">Submit</button>
+            
+           
+            
         </mat-card-content>
     </mat-card>
     <dx-popup
-    [width]="400"
-    [height]="280"
+    [width]="450"
+    [height]="350"
     [showTitle]="true"
     title="Invoice"
     [dragEnabled]="false"
@@ -193,7 +200,11 @@
     [(visible)]="popupVisible"
      >
      <div id="container" #container>
-    <table class="custom_class">
+    <table class="custom_class"> 
+        <tr>
+            <td><strong>Billing No</strong></td>
+            <td style="text-align: right;">{{this.poNumber}}</td>
+        </tr>       
         <tr>
             <td><strong>ShippingFrom</strong></td>
             <td style="text-align: right;">{{this.fromAddress}}</td>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from '../customer.service';  
 import { Customer } from '../customer'; 
-import { DxPopupModule, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
+import { DxPopupModule, DxButtonModule, DxTemplateModule ,DxToastModule} from 'devextreme-angular';
 import jsPDF from 'jspdf';
 
 import html2canvas from 'html2canvas';
@@ -24,6 +24,10 @@ export class CustomerDetailsComponent implements OnInit {
   commodity!:string;
   tax!:number;
   totalCost!:number;
+  submitmessage ="Customer Details Submitted";
+  isVisible:boolean =false;
+  type ="info";
+  onsaveClick = true;
 
    
 
@@ -52,19 +56,22 @@ export class CustomerDetailsComponent implements OnInit {
 
   } );
 }
-get primEmail(){
-	return this.form.get('email')
-  }
+ 
 onSubmit(value:any){
    this.submitted = true;
    console.log(this.form)
    const customer = this.form.value;
    this.CreateCustomer(customer);
+   this.onsaveClick = false;
 }
 getInvoiceDetails(){
   if(this.poNumber != null){
     this.popupVisible = true;
     this.GetCustomerDetails(this.poNumber);
+    if(this.customer != null){
+      this.form.reset();
+    }
+    
   } 
   
 }
@@ -77,6 +84,7 @@ GetCustomerDetails(poNumber:number){
     this.commodity = response.commodity;
     this.tax = response.tax;
     this.totalCost = response.totalCost;
+    this.poNumber = response.poNumber;
   })
 }
 
@@ -129,5 +137,8 @@ this.customerService.createCustomer(customer).subscribe((d :Customer)=>
       this.poNumber = d.poNumber
     }
 });
+
+this.isVisible = true;
+
 }
 }
