@@ -24,7 +24,7 @@ export class CustomerDetailsComponent implements OnInit {
   commodity!:string;
   tax!:number;
   totalCost!:number;
-  submitmessage ="Customer Details Submitted";
+  submitmessage ="Customer Details Saved";
   isVisible:boolean =false;
   type ="info";
   onsaveClick = true;
